@@ -3,16 +3,18 @@ import './ProductListItem.css'
 import { useState } from 'react'
 
 type ProductListItemType = {
+    id: number
     title: string
     description: string
     type: string
     capacity: string
     price: number
     image: string
-    addProductToCart: (count: number, price: number) => void
+    addProductToCart: (id: number, count: number) => void
 }
 
 const ProductListItem = ({
+    id,
     title,
     description,
     type,
@@ -59,7 +61,7 @@ const ProductListItem = ({
                 <div className="btns-wrap">
                     <Button
                         variant="outlined"
-                        onClick={() => addProductToCart(count, price)}
+                        onClick={() => addProductToCart(id, count)}
                     >
                         Add to cart
                     </Button>
