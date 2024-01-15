@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Quantity from 'components/Quantity/Quantity'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import { Link } from 'react-router-dom'
 
 type ProductListItemType = {
     id: number
@@ -48,7 +49,9 @@ const ProductListItem = ({
                     <img src={image} alt={title} />
                 </div>
 
-                <h2 className="product-title">{title}</h2>
+                <h2 className="product-title">
+                    <Link to={`/products/${id}`}>{title}</Link>
+                </h2>
                 <p className="product-description">{description}</p>
                 <div className="product-features">Type: {type}</div>
                 <div className="product-features">Capacity: {capacity}Gb</div>

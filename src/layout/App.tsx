@@ -8,6 +8,7 @@ import { Container } from '@mui/material'
 import Home from 'pages/Home/Home'
 import CartPage from 'pages/CartPage/CartPage'
 import { omit } from 'lodash'
+import ProductPage from 'pages/Product/ProductPage'
 
 type Props = {}
 
@@ -68,6 +69,7 @@ const App = (props: Props) => {
                             />
                         }
                     />
+                    <Route path="/products/:id" element={<ProductPage />} />
                 </Routes>
             </Container>
 
