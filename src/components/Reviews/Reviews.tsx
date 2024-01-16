@@ -7,6 +7,8 @@ import {
     Typography,
 } from '@mui/material'
 import { useState } from 'react'
+import { useAppDispatch, useAppSelector } from 'store/hooks'
+import { addReview } from 'store/reviewsSlice'
 
 type Props = {}
 
@@ -16,18 +18,9 @@ type Review = {
 }
 
 const Reviews = (props: Props) => {
-    const arrReviews: Review[] = [
-        {
-            name: 'Jack',
-            text: 'Что ж, в живую он просто прекрасен, идеальный дизайн, размер, сзади очень приятная матовая крышка, на ней не остаётся отпечатков, не скользит в руке, удобность и внешка просто 10 из 10.',
-        },
-        {
-            name: 'John',
-            text: 'Все супер, телефон просто бомба)',
-        },
-    ]
+    const arrReviews = useAppSelector((state) => state.reviews)
+    const dispatch = useAppDispatch()
 
-    const [reviews, setReviews] = useState<Review[]>(arrReviews)
     const [newReview, setNewReview] = useState<Review>({
         name: '',
         text: '',
@@ -51,9 +44,7 @@ const Reviews = (props: Props) => {
         if (newReview.name === '' || newReview.text === '') {
             alert('All fields are required!')
         } else {
-            setReviews((prevState) => {
-                return [...prevState, newReview]
-            })
+            dispatch(addReview(newReview))
             setNewReview({
                 name: '',
                 text: '',
@@ -73,7 +64,7 @@ const Reviews = (props: Props) => {
                 Reviews
             </Typography>
             <div>
-                {reviews.map(({ name, text }, i) => (
+                {arrReviews.map(({ name, text }, i) => (
                     <Card
                         variant="outlined"
                         sx={{

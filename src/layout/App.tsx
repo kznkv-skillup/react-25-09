@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Footer from './Footer'
 import Header from './Header'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -7,42 +6,14 @@ import { Route, Routes } from 'react-router-dom'
 import { Container } from '@mui/material'
 import Home from 'pages/Home/Home'
 import CartPage from 'pages/CartPage/CartPage'
-import { omit } from 'lodash'
 
 type Props = {}
 
-type ProductsInCartType = {
-    [id: number]: number
-}
-
 const App = (props: Props) => {
-    const [productsInCart, setProductsInCart] = useState<ProductsInCartType>({
-        1: 5,
-        2: 5,
-    })
-
-    const addProductToCart = (id: number, count: number) => {
-        setProductsInCart((prevState) => ({
-            ...prevState,
-            [id]: (prevState[id] || 0) + count,
-        }))
-    }
-
-    const removeProductFromCart = (id: number) => {
-        setProductsInCart((prevState) => omit(prevState, id))
-    }
-
-    const changeProductQuantity = (id: number, count: number) => {
-        setProductsInCart((prevState) => ({
-            ...prevState,
-            [id]: count,
-        }))
-    }
-
     return (
         <StyledEngineProvider injectFirst>
             <CssBaseline />
-            <Header productsInCart={productsInCart} />
+            <Header />
             <Container
                 maxWidth="lg"
                 sx={{
@@ -50,24 +21,8 @@ const App = (props: Props) => {
                 }}
             >
                 <Routes>
-                    <Route
-                        path="/"
-                        element={
-                            <>
-                                <Home addProductToCart={addProductToCart} />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="cart"
-                        element={
-                            <CartPage
-                                changeProductQuantity={changeProductQuantity}
-                                removeProductFromCart={removeProductFromCart}
-                                productsInCart={productsInCart}
-                            />
-                        }
-                    />
+                    <Route path="/" element={<Home />} />
+                    <Route path="cart" element={<CartPage />} />
                 </Routes>
             </Container>
 

@@ -5,13 +5,9 @@ import Logo from 'components/Logo/Logo'
 import Menu from 'components/Menu/Menu'
 import CartHeader from 'components/CartHeader/CartHeader'
 
-type Props = {
-    productsInCart: {
-        [id: number]: number
-    }
-}
+type Props = {}
 
-const Header = ({ productsInCart }: Props) => {
+const Header = (props: Props) => {
     return (
         <AppBar
             position="static"
