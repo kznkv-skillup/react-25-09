@@ -23,7 +23,7 @@ const Header = ({ productsInCart }: Props) => {
                 <Toolbar>
                     <Logo />
                     <Menu />
-                    <CartHeader productsInCart={productsInCart} />
+                    <CartHeader />
                 </Toolbar>
             </Container>
         </AppBar>

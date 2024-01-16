@@ -4,8 +4,9 @@ import { useState } from 'react'
 import Quantity from 'components/Quantity/Quantity'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
-import { useAppDispatch, useAppSelector } from '../../redux/hooks'
-import { toggleLikeState } from '../../redux/likeReducer'
+import { useAppDispatch, useAppSelector } from 'store/hooks'
+import { toggleLikeState } from 'store/likeSlice'
+import { addProductToCart } from 'store/cartSlice'
 
 type ProductListItemType = {
     id: number
@@ -15,7 +16,7 @@ type ProductListItemType = {
     capacity: string
     price: number
     image: string
-    addProductToCart: (id: number, count: number) => void
+    addProductToCart?: (id: number, count: number) => void
 }
 
 const ProductListItem = ({
@@ -26,7 +27,6 @@ const ProductListItem = ({
     capacity,
     price,
     image,
-    addProductToCart,
 }: ProductListItemType) => {
     const [count, setCount] = useState<number>(1)
 
@@ -70,7 +70,9 @@ const ProductListItem = ({
                 <div className="btns-wrap">
                     <Button
                         variant="outlined"
-                        onClick={() => addProductToCart(id, count)}
+                        onClick={() =>
+                            dispatch(addProductToCart({ id, count }))
+                        }
                     >
                         Add to cart
                     </Button>

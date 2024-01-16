@@ -1,13 +1,10 @@
 import CartProductList from 'components/CartProductList/CartProductList'
 import CartTotal from 'components/CartTotal/CartTotal'
+import { useAppSelector } from 'store/hooks'
 
-type Props = {
-    productsInCart: {
-        [id: number]: number
-    }
-}
+const CartHeader = () => {
+    const productsInCart = useAppSelector((state) => state.productsInCart)
 
-const CartHeader = ({ productsInCart }: Props) => {
     return (
         <div>
             <CartProductList productsInCart={productsInCart} />
