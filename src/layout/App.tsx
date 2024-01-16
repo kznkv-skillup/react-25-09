@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router-dom'
 import { Container } from '@mui/material'
 import Home from 'pages/Home/Home'
 import CartPage from 'pages/CartPage/CartPage'
+import CheckoutPage from 'pages/Checkout/CheckoutPage'
 
 type Props = {}
 
@@ -23,6 +24,7 @@ const App = (props: Props) => {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="cart" element={<CartPage />} />
+                    <Route path="checkout" element={<CheckoutPage />} />
                 </Routes>
             </Container>
 
